@@ -76,7 +76,7 @@ def movimentoJogador(board):
     # Permite ao jogador digitar seu movimento
     move = ' '
     while move not in '1 2 3 4 5 6 7 8 9'.split() or not esteEspacoTaLivre(board, int(move)):
-        move = input ('Qual sua próxima jogada? - use o teclado numérico: (1-9)')
+        move = input ('Qual sua próxima jogada? - use o teclado numérico: (1-9) ')
          
     return int(move)
 
