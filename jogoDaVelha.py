@@ -132,7 +132,7 @@ def copiaTabuleiro(tabuleiro):
             }
     for k in ["A", "B", "C"]:
         for j in range (3):
-            copia[k],[j] = tabuleiro[k],[j]
+            copia[k][j] = tabuleiro[k][j]
     
     return copia
 
@@ -165,25 +165,32 @@ def jogadaMaquina(tabuleiro, jogada):
         numero = [0, 1, 2]
 
        # teste se é possível o computador vencer na próxima jogada
-        for l in letra:                          
-           for n in numero:
+        for l in letra:
+            jogou = False                          
+            for n in numero:
                 copia = copiaTabuleiro (tabuleiro)       #faz uma cópia do tabuleiro atual para testes
                 if validaEntradaDisponivel(copia, l, n):
                     copia[l][n] = "X"
                     if confereGanhador(copia, "X"):
                         tabuleiro[l][n] = "X"
+                        jogou = True
                         break
+            if jogou:
+                break
                 
         # teste se é possível o jogador vencer na próxima rodada e o bloqueia
-        for l in letra:                          
-           for n in numero:
+        for l in letra:
+            jogou = False                          
+            for n in numero:
                 copia = copiaTabuleiro (tabuleiro)       #faz uma cópia do tabuleiro atual para testes
                 if validaEntradaDisponivel(copia, l, n):
                     copia[l][n] = "O"
                     if confereGanhador(copia, "O"):
                         tabuleiro[l][n] = "X"
+                        jogou = True
                         break
-
+            if jogou:
+                break
         # tenta ocupar o centro, se estiver livre
         if validaEntradaDisponivel(tabuleiro, "B", 2):
             tabuleiro["B"][1] = "X"
